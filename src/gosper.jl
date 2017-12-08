@@ -17,7 +17,7 @@ function gosper(n::Int, k::Int)
     return GosperIterator(n, k)
 end
 
-typealias GosperState Tuple{Int64, Int64}
+const GosperState = Tuple{Int64,Int64}
 
 eltype(it::GosperIterator) = Int64
 length(it::GosperIterator) = binomial(it.n, it.k)
@@ -32,7 +32,7 @@ function next(it::GosperIterator, state::GosperState)
     o = state[1]
     u = state[1] & -state[1]
     v = u + state[1]
-    y = v + (div(v $ state[1], u) >> 2)
+    y = v + (div(xor(v, state[1]), u) >> 2)
     return o, (y, state[2])
 end
 

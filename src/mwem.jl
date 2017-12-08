@@ -28,7 +28,7 @@ function noisy_max(mwstate::MWState)
     diffs = mwstate.real_answers - evaluate(mwstate.queries, mwstate.synthetic)
     # do not select previously measured queries
     diffs[collect(keys(mwstate.measurements))] = 0.0
-    indmax(abs(diffs) + rand(Laplace(0.0, mwstate.scale), length(diffs)))
+    indmax(abs.(diffs) + rand(Laplace(0.0, mwstate.scale), length(diffs)))
 end
 
 

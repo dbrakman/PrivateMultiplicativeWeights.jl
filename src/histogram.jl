@@ -53,7 +53,7 @@ function initialize(queries::Queries, data::Histogram, ps::MWParameters)
     num_samples = data.num_samples
     if ps.noisy_init
         # Noisy init incurs an additional `epsilon` privacy cost
-        weights = Array(Float64, histogram_length)
+        weights = Array{Float64}(histogram_length)
         noise = rand(Laplace(0.0, 1.0/(ps.epsilon*num_samples)), histogram_length)
         @simd for i = 1:histogram_length
              @inbounds weights[i] = 

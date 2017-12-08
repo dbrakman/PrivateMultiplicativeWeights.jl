@@ -1,9 +1,9 @@
-abstract Data
-abstract Query
-abstract Queries
+abstract type Data end
+abstract type Query end
+abstract type Queries end
 
 
-typealias QueryIndex Int
+const QueryIndex = Int
 
 
 type MWState

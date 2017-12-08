@@ -24,7 +24,7 @@ Evaluate all range queries on the given histogram.
 """
 function evaluate(queries::RangeQueries, h::Histogram)
     @assert queries.domain == length(h.weights)
-    answers = Array(Float64, queries.domain)
+    answers = Array{Float64}(queries.domain)
     running_sum = -1.0
     @simd for j=1:queries.domain
         @inbounds running_sum += 2.0 * h.weights[j]

@@ -16,7 +16,7 @@ end
 Returns hadamard basis vector given by `index`.
 """
 function hadamard_basis_vector(index::Int, dimension::Int)
-    hadamard = Array(Float64, 1 << dimension)
+    hadamard = Array{Float64}(1 << dimension)
     hadamard[1] = 1.0
     for i = 0:dimension-1
         sign = (index & (1 << i)) > 0 ? -1.0 : 1.0
@@ -100,7 +100,7 @@ function evaluate(q::FactorParity, table::Tabular)
 end
 
 function evaluate(qs::FactorParities, table::Tabular)
-    evals = Array(Float64, length(qs.queries))
+    evals = Array{Float64}(length(qs.queries))
     @simd for i in 1:length(qs.queries)
         @inbounds evals[i] = evaluate(qs.queries[i], table)
     end
